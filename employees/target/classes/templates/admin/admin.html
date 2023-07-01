@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" th:href="@{/css/common.css?after}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+</head>
+<body>
+    <header th:insert="~{fragment/header::header}"></header>
+    <h3>관리자 페이지</h3>
+    <div>
+        <span>이메일주소</span>
+        <span>부서명</span>
+        <span>직급</span>
+    </div>
+    <a href="/logout">로그아웃</a>
+    <footer>
+        <p>[[${web.korWebCopyright}]]</p>
+    </footer>
+</body>
+</html>
