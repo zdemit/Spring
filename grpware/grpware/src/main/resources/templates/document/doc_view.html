@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<!-- =========================================================
+* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
+==============================================================
+
+* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
+* Created by: ThemeSelection
+* License: You must have a valid license purchased in order to legally use the theme for your project.
+* Copyright ThemeSelection (https://themeselection.com)
+
+=========================================================
+ -->
+<!-- beautify ignore:start -->
+<html
+        lang="en"
+        class="light-style layout-menu-fixed"
+        dir="ltr"
+        data-theme="theme-default"
+        data-assets-path="../assets/"
+        data-template="vertical-menu-template-free"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="utf-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>전자결재 > [[${doc.grpDocSubject}]]</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+    <link rel="stylesheet" href="../assets/css/list" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+    <style>
+    a {
+        text-decoration-line: none;
+    }
+    .wrap {
+      width: 1000px;
+      max-width: 1500px;
+      padding: 20px;
+      background-color: #ffffff;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table tr {
+      height: 40px;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+    .btn {
+      padding: 5px 10px;
+      margin-top: 8px;
+      background-color: #848484;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn:hover {
+      background-color: #353535;
+    }
+    .grpBoardSubject, .grpBoardWriter {
+            height: 20px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+    }
+    .grpBoardContent {
+        border: 1px solid #ccc;
+    }
+    .doc-btn-wrap {
+        margin-left : 5px;
+    }
+  </style>
+    <script src="/js/jquery.js"></script>
+</head>
+<body>
+<th:block th:if="${session.user == null}" name="user">
+    <script>
+        alert("로그인이 필요합니다.");
+        location.href = '/login';
+    </script>
+</th:block>
+
+<th:block th:unless="${session.user == null}" name="user" >
+    <input type="hidden" th:value="${session.user.grpEmpId}" name="user">
+
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+
+            <div th:insert="~{fragment/left :: left}"></div>
+
+            <!-- Layout container -->
+            <div class="layout-page">
+
+                <div th:insert="~{fragment/header :: header}"></div>
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">전자결재 /</span> document</h4>
+                        <div class="card">
+                            <div class="table-responsive text-nowrap">
+                                <div class="wrap">
+                                <form>
+                                    <table>
+                                        <tr class="view-info" style="text-align:center">
+                                            <td>
+                                                <h2>[[${doc.grpDocSubject}]]</h2>
+                                            </td>
+                                        </tr>
+                                        <tr style="text-align:right">
+                                            <td>
+                                                <strong>기안일</strong> [[${#temporals.format(doc.grpDocRegdate, 'yyyy.MM.dd')}]] &nbsp&nbsp&nbsp <strong>기안자 : </strong>[[${doc.grpDocWriter}]] &nbsp&nbsp&nbsp <strong>결재자 : </strong>[[${docApprover}]] &nbsp&nbsp&nbsp <strong>결재상태 : </strong>[[${doc.grpDocState}]]
+                                            </td>
+                                        </tr>
+                                        <th:block th:if="${#strings.equals(doc.grpDocState, '반려')}">
+                                            <tr>
+                                                <td><strong>반려 사유 : </strong>[[${doc.grpDocRfr}]]</td>
+                                            </tr>
+                                        </th:block>
+                                        <th:block th:unless="${#strings.equals(doc.grpDocState, '반려')}"></th:block>
+                                        <tr>
+                                            <td th:utext="${doc.grpDocContent}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>첨부파일
+                                                <th:block th:if="${doc.grpDocUploadName == null}">
+                                                    업로드 된 첨부파일이 없습니다.
+                                                </th:block>
+                                                <th:block th:unless="${doc.grpDocUploadName == null}">
+                                                    [[${doc.grpDocUploadName}]] ([[${#numbers.formatInteger(doc.grpDocUploadSize, 3, 'COMMA')}]]bytes)
+                                                    <a th:href="@{/board/download?(dir=${doc.grpDocUploadUrl}, filename = ${doc.grpDocUploadTrans})}">Download</a>
+                                                </th:block>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div>
+                                        <!--            <th:block th:if="${#strings.equals(doc.grpDocWriterUserid, session.user.session.user.grpEmpUserid)}">-->
+
+                                        <th:block th:if="${doc.grpDocWriterUserid eq session.user.grpEmpUserid}">
+                                            <a th:href="@{/doc/modify?(grpDocId = ${doc.grpDocId})}">
+                                                <button type="button" class="btn">수정</button>
+                                            </a>
+                                        </th:block>
+                                        <th:block th:unless="${doc.grpDocWriterUserid eq session.user.grpEmpUserid}"></th:block>
+
+                                        <a href="/doc/list">
+                                            <button type="button" class="btn">기안목록</button>
+                                        </a>
+                                        <a href="/doc/signList">
+                                            <button type="button" class="btn">결재목록</button>
+                                        </a>
+                                        <th:block th:if="${doc.grpDocWriterUserid eq session.user.grpEmpUserid}">
+                                            <a th:onclick="deleteDoc([[${doc.grpDocId}]])">
+                                                <button type="button" class="btn">삭제</button>
+                                            </a>
+                                        </th:block>
+                                        <th:block th:unless="${doc.grpDocWriterUserid eq session.user.grpEmpUserid}"></th:block>
+                                        <th:block th:if="${doc.grpDocApprover eq session.user.grpEmpUserid}">
+                                            <a th:onclick="acceptDoc([[${doc.grpDocId}]])">
+                                                <button type="button" class="btn">결재 승인</button>
+                                            </a>
+                                        </th:block>
+                                        <th:block th:unless="${doc.grpDocApprover eq session.user.grpEmpUserid}"></th:block>
+                                        <th:block th:if="${doc.grpDocApprover eq session.user.grpEmpUserid}">
+                                            <a th:href="@{/doc/reject?(grpDocId = ${doc.grpDocId})}" target="_blank">
+                                                <button type="button" class="btn" style="background-color:#f00">결재 반려</button>
+                                            </a>
+                                        </th:block>
+                                        <th:block th:unless="${doc.grpDocApprover eq session.user.grpEmpUserid}"></th:block>
+                                    </div>
+                                    <input type="hidden" class="grpDocId" th:value="${doc.grpDocId}">
+                                    <input type="hidden" class="grpDocUploadName" th:value="${doc.grpDocUploadName}">
+                                    <input type="hidden" class="grpDocUploadSize" th:value="${doc.grpDocUploadSize}">
+                                    <input type="hidden" class="grpDocUploadTrans" th:value="${doc.grpDocUploadTrans}">
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Basic Bootstrap Table -->
+                    </div>
+                    <!-- / Content -->
+
+                    <div th:insert="~{fragment/footer :: footer}"></div>
+
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <div class="buy-now">
+        <a href="#" class="btn btn-danger btn-buy-now" onClick="javascript:window.scrollTo(0,0)">맨 위로</a>
+    </div>
+</th:block>
+
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+<script src="../assets/vendor/js/menu.js"></script>
+<!-- endbuild -->
+
+<!-- Vendors JS -->
+
+<!-- Main JS -->
+<script src="../assets/js/main.js"></script>
+
+<!-- Page JS -->
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+    function deleteDoc(grpDocId) {
+        if(confirm("결재문서를 삭제하시겠습니까?")) {
+            $.ajax({
+                type: "get",
+                url: "/doc/delete",
+                dataType: "json",
+                data: {grpDocId},
+                success: function(res) {
+                    if(res.msg == "success") {
+                        alert("삭제되었습니다.");
+                        location.href = "/doc/list";
+                    }
+                },
+                err : function(err) {
+                    console.log(err);
+                }
+            });
+        } else {
+            return false;
+        }
+    }
+    function acceptDoc(grpDocId) {
+        if(confirm("승인 처리 하시겠습니까?")) {
+            $.ajax({
+                type: "get",
+                url: "/doc/accept",
+                dataType: "json",
+                data: {grpDocId},
+                success: function(res) {
+                    if(res.msg == "success") {
+                        alert("결재 승인되었습니다.");
+                        location.href = "/doc/signList";
+                    }
+                },
+                err : function(err) {
+                    console.log(err);
+                }
+            });
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

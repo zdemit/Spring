@@ -1,0 +1,42 @@
+a {
+        text-decoration-line: none;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+        font-size: 30px;
+    }
+
+
+    .wrap {
+        width: 1500px;
+        margin: 100px auto;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    tr {
+      height: 40px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+
+    }
+
+    .btn {
+      padding: 5px 10px;
+      background-color: #848484;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #353535;
+    }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 페이지</title>
+    <script th:src="@{/js/jquery.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/register.css?after}">
+
+</head>
+<body>
+    <div class="alert">
+        <p></p>
+    </div>
+
+    <div class="container">
+        <div class="title">
+            <h1>Register</h1>
+        </div>
+        <form action="#">
+            <div class="form-row">
+                <div class="input-data-wrap">
+                    <input type="hidden" class="grpEmpAuth" name="grpEmpAuth">
+                    <div class="input-data">
+                        <input type="text" name="grpEmpUserid" class="grpEmpUserid" id="grpEmpUserid"required>
+                        <div class="underline"></div>
+                        <label for="grpEmpUserid">Userid. <span id="chkPage" style="color: f00" !important;> </span></label>
+                    </div>
+                    <div class="input-data">
+                        <input type="text" name="grpEmpName" class="grpEmpName" id="grpEmpName" required>
+                        <div class="underline"></div>
+                        <label for="grpEmpName">Name.</label>
+                    </div>
+                </div>
+                <div class="input-data-wrap">
+                    <div class="input-data">
+                        <input type="password" name="grpEmpPasswd" class="grpEmpPasswd" id="grpEmpPasswd" required>
+                        <div class="underline"></div>
+                        <label for="grpEmpPasswd">Password.</label>
+                    </div>
+                    <div class="input-data">
+                        <input type="password" name="grpEmpPasswd2" class="grpEmpPasswd2" id="grpEmpPasswd2" required>
+                        <div class="underline"></div>
+                        <label for="grpEmpPasswd2">Repeat Password.</label>
+                    </div>
+                </div>
+                <div class="input-data-wrap">
+                    <div class="input-data">
+                        <input type="text" name="grpEmpBirth" class="grpEmpBirth" id="grpEmpBirth" maxlength="8" required>
+                        <div class="underline"></div>
+                        <label class="birth" for="grpEmpBirth">Birth.</label>
+                        <span>생년월일 8자리를 입력하세요.</span>
+                    </div>
+                    <div class="input-data">
+                        <input type="text" name="grpEmpPnum" class="grpEmpPnum" id="grpEmpPnum" maxlength="13" required>
+                        <div class="underline"></div>
+                        <label class="pnum" for="grpEmpPnum" >Phone Num.</label>
+                        <span>'-'를 포함하여 입력해주세요.</span>
+                    </div>
+                </div>
+                <div class="email-wrap">
+                    <div class="email-form" >
+                        <input type="text" name="grpEmpEmail" class="grpEmpEmail" id="grpEmpEmail" required>
+                        <div class="underline"></div>
+                        <label class="email" for="grpEmpEmail" >Email. <span id="chkEmail" style="color: #f00"; font-size="13px"> </span></label>
+                    </div>
+                </div>
+                <div class="input-data-wrap">
+                    <div class="input-data">
+                        <div class="selBox">
+                            <label></label>
+                            <select name="grpEmpDept" class="grpEmpDept" id="selDept" onchange="getPos()"></select>
+                        </div>
+                    </div>
+                    <div class="input-data">
+                        <div class="selBox">
+                            <label></label>
+                            <select name="grpEmpPos" class="grpEmpPos" id="selPos"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-wrap">
+                    <div class="reg">
+                        <button type="button" id="reg" class="btn1">Register</button>
+                    </div>
+                    <div class="login">
+                        <a href="/login" class="btn2">go to Login</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script th:src="@{/js/register.js}"></script>
+</body>
+</body>
+</html>

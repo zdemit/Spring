@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  #header {
+    height: 120px;
+    background-color: whtie;
+    border-bottom: 1px solid lightgray;
+  }
+  
+  .container {
+    width: 1200px;
+    height: 120px;
+    margin: auto;
+    /* header에 주지말고 그 안의 요소에 padding을 준다. */
+    padding: 20px 0;
+  }
+  
+  .logo {
+    float: left;
+    width: 120px;
+    height: 100px;
+    margin-right: 10px;
+  }
+  
+  /* 이미지마다 클래스를 주게 되면 효율적인 코드 작성이 아니다. */
+  .logo img {
+    width: 120px;
+    /* img밑에 여백 없애는 코드 */
+    display: block;
+  }
+  
+  .menu {
+    float: right;
+  }
+  
+  .menu-item {
+    float: left;
+    font-size: 18px;
+    /* 수직으로 가운데 정렬은 안쪽 여백을 둔다 */
+    padding: 24px 40px;
+    font-weight: bold;
+  }
+  
+  /* float: left로 가로로 정렬 하고 부모 태그에 clearfix 클래스를 추가해준다*/
+  .clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
